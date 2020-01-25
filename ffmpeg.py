@@ -38,7 +38,7 @@ for f in files:
 #Recent ffmpeg also has a flag to supply the end time with -to.
 #-c copy copies the first video, audio, and subtitle bitstream from the input to the output file without re-encoding them. This won't harm the quality and make the command run within seconds.
 tiempo_final=time()
-tiempo_ejecución=tiempo_final-tiempo_inicial
+tiempo_ejecución=tiempo_final-tiempo_inicial+tiempo_ejecución
 print("terminado de leer archivos tardo:"+str(tiempo_ejecución)+ " en segundos")
 #termino de quitar los 30 segundos del inicio
 
@@ -84,7 +84,7 @@ for f in files:
     #subprocess.call(['ffmpeg','-y', '-ss',str(inicial),'-i',f[0],'-sseof',str(final),'-t',str(tiempo),'-c','copy',str(i)+"-"+f[0],'-hide_banner','-loglevel','panic',])
     subprocess.call(['ffmpeg','-y','-t',str(duracion_real) ,'-i',f[0],'-c','copy',"../transformados2/"+str(i)+"-"+f[0],'-hide_banner','-loglevel','panic',])
 tiempo_final=time()
-tiempo_ejecución=tiempo_final-tiempo_inicial
+tiempo_ejecución2=tiempo_final-tiempo_inicial+tiempo_ejecución2
 print("terminado de leer archivos tardo:"+str(tiempo_ejecución)+" en segundos")
 
 
@@ -127,7 +127,6 @@ for f in files:
     duracion=re.sub('[^A-Za-z0-9]+', '', duracion)
     duracion=int(duracion)/1000000
     duracion_real=duracion-30 
-    print(duracion_real)
     inicial=random.randint(1,int(duracion_real))
     #subprocess.call(['ffmpeg','-y', '-ss',str(inicial),'-i',f[0],'-sseof',str(final),'-t',str(tiempo),'-c','copy',str(i)+"-"+f[0],'-hide_banner','-loglevel','panic',])
     subprocess.call(['ffmpeg','-y', '-ss',str(inicial),'-i',f[0],'-c','copy','-t', '30',"../final/"+str(i)+"-"+f[0],'-hide_banner','-loglevel','panic',])
@@ -136,7 +135,7 @@ for f in files:
 #Recent ffmpeg also has a flag to supply the end time with -to.
 #-c copy copies the first video, audio, and subtitle bitstream from the input to the output file without re-encoding them. This won't harm the quality and make the command run within seconds.
 tiempo_final=time()
-tiempo_ejecución=tiempo_final-tiempo_inicial
+tiempo_ejecución3=tiempo_final-tiempo_inicial+tiempo_ejecución3
 print("terminado de leer archivos tardo:"+str(tiempo_ejecución)+" en segundos")
 tiempo_total= tiempo_ejecución+tiempo_ejecución2+tiempo_ejecución3
 print("listo en "+str(tiempo_total))
